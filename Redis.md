@@ -341,23 +341,96 @@ Hashes are maps between string fields and string values.
 
 ### 3\. **Lists**
 
-Lists are collections of string elements sorted by insertion order.
+Lists are collections of string elements sorted by insertion order **unique value not required** it's work like **queue** push at **start** pop at **end** of queue.
 
-*   **LPUSH**: Insert an element at the head of a list.
+*   **LPUSH**: Insert one or more elements at the head of a list.
     
     ```bash    
     LPUSH mylist "world"
     LPUSH mylist "hello"
+    LRANGE mylist 0 -1
+    Output:
+    1) "hello"
+    2) "world"
     ```
-*   **RPUSH**: Insert an element at the tail of a list.
+*   **RPUSH**: Insert one or more elements at the tail of a list.
     
     ```bash    
     RPUSH mylist "end"
+    LRANGE mylist 0 -1
+    Output:
+    1) "hello"
+    2) "world"
+    3) "end"
     ```
-*   **LRANGE**: Get a range of elements from a list.
+*   **LPOP**:  Remove and return the first element from the head of a list.
+    - Syntax: **LPOP key [count]** 
+    - Hint count default **1**
+    ```bash   
+    LPOP mylist
+    LRANGE mylist 0 -1
+    1) "world"
+    2) "end"
+    ```
+*   **RPOP**: Remove and return the last element from the tail of a list.
+    - Syntax: **RPOP key [count]** 
+    - Hint count default **1**
+    ```bash   
+    RPOP mylist
+    LRANGE mylist 0 -1
+    Output:
+    1) "world"
+    ```
+*   **LRANGE**:  Get a range of elements from a list.
+    - Syntax: **LLEN key**
+    ```bash   
+    LRANGE mylist 0 -1
+    ```
+*   **LLEN**:  Get the length of a list.
     
     ```bash   
-    LRANGE mylist 0 \-1
+    LLEN mylist
+    Output:
+    (integer) 1
+    ```
+*   **LPOS**:  Returns the index of the first occurrence of a specified element.
+    - Syntax: **LPOS key element [RANK rank] [COUNT num-matches] [MAXLEN len]**
+
+    ```bash   
+    LPUSH mylist "hello"
+    LPUSH mylist "world"
+    LPUSH mylist "hello"
+    LPOS mylist "hello"
+    Output:
+    (integer) 0
+    ```
+*   **LINDEX**:  Get an element by its index in the list.
+    - Syntax: **LINDEX key index**
+
+    ```bash   
+    LINDEX mylist 1
+    Output:
+    "world"
+    ```
+*   **LREM**:  Removes the first **`count`** occurrences of the specified element.
+    - Syntax: **LREM key count element**
+
+    ```bash   
+    LREM mylist 1 "hello"
+    Output:
+    1) "world"
+    2) "hello"
+    ```
+*   **LTRIM**:  Trims the list to contain only the elements within the specified range.
+    - Syntax: **LTRIM key start stop**
+
+    ```bash   
+    RPUSH mylist "Mustafa"
+    LTRIM mylist 1 -1
+    LRANGE mylist 0 -1
+    Output:
+    1) "hello"
+    2) "Mustafa"
     ```
 
 ### 4\. **Sets**
