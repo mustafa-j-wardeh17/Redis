@@ -19,304 +19,304 @@ Strings are the most basic type of Redis value. They are binary-safe and can sto
 
 * * *
 
-#### **SET**: Set the value of a key.
+*   #### **SET**: Set the value of a key.
 
-```bash
-\# Command
-SET mykey "Hello"
+    ```bash
+    \# Command
+    SET mykey "Hello"
 
-\# Result
-OK
-```
+    \# Result
+    OK
+    ```
 * * *
 
-#### **GET**: Get the value of a key.
+*   #### **GET**: Get the value of a key.
 
-```bash
-\# Previous Value
-"Hello" (set using \`SET mykey "Hello"\`)
+    ```bash
+    \# Previous Value
+    "Hello" (set using \`SET mykey "Hello"\`)
 
-\# Command
-GET mykey
+    \# Command
+    GET mykey
 
-\# Result
-"Hello"
-```
+    \# Result
+    "Hello"
+    ```
 * * *
 
-#### **INCR**: Increment the integer value of a key by 1.
+*   #### **INCR**: Increment the integer value of a key by 1.
 
-```bash
-\# Previous Value
-10 (set using \`SET counter 10\`)
+    ```bash
+    \# Previous Value
+    10 (set using \`SET counter 10\`)
 
-\# Command
-INCR counter
+    \# Command
+    INCR counter
 
-\# Result
-(integer) 11
-```
+    \# Result
+    (integer) 11
+    ```
 * * *
 
-#### **APPEND**: Append a value to a key.
+*   #### **APPEND**: Append a value to a key.
 
-```bash
-\# Previous Value
-"Hello" (set using \`SET mykey "Hello"\`)
+    ```bash
+    \# Previous Value
+    "Hello" (set using \`SET mykey "Hello"\`)
 
-\# Command
-APPEND mykey " World"
+    \# Command
+    APPEND mykey " World"
 
-\# Result
-(integer) 11  \# Length of the new string
-```
+    \# Result
+    (integer) 11  \# Length of the new string
+    ```
 * * *
 
-#### **DECR**: Decrement the integer value of a key by 1.
+*   #### **DECR**: Decrement the integer value of a key by 1.
 
-```bash
-\# Previous Value
-10 (set using \`SET counter 10\`)
+    ```bash
+    \# Previous Value
+    10 (set using \`SET counter 10\`)
 
-\# Command
-DECR counter
+    \# Command
+    DECR counter
 
-\# Result
-(integer) 9
-```
+    \# Result
+    (integer) 9
+    ```
 * * *
 
-#### **DECRBY**: Decrement the integer value of a key by a specified amount.
+*   #### **DECRBY**: Decrement the integer value of a key by a specified amount.
 
-```bash
-\# Previous Value
-10 (set using \`SET counter 10\`)
+    ```bash
+    \# Previous Value
+    10 (set using \`SET counter 10\`)
 
-\# Command
-DECRBY counter 5
+    \# Command
+    DECRBY counter 5
 
-\# Result
-(integer) 5
-```
+    \# Result
+    (integer) 5
+    ```
 * * *
 
-#### **GETDEL**: Get the value of a key and then delete it.
+*   #### **GETDEL**: Get the value of a key and then delete it.
 
-```bash
-\# Previous Value
-"Hello" (set using \`SET mykey "Hello"\`)
+    ```bash
+    \# Previous Value
+    "Hello" (set using \`SET mykey "Hello"\`)
 
-\# Command
-GETDEL mykey
+    \# Command
+    GETDEL mykey
 
-\# Result
-"Hello"  \# Key is deleted after this command
-```
+    \# Result
+    "Hello"  \# Key is deleted after this command
+    ```
 * * *
 
-#### **GETEX**: Get the value of a key and optionally set its expiration.
+*   #### **GETEX**: Get the value of a key and optionally set its expiration.
 
-```bash
-\# Previous Value
-"Hello" (set using \`SET mykey "Hello"\`)
+    ```bash
+    \# Previous Value
+    "Hello" (set using \`SET mykey "Hello"\`)
 
-\# Command
-GETEX mykey EX 60  \# Set expiration to 60 seconds
+    \# Command
+    GETEX mykey EX 60  \# Set expiration to 60 seconds
 
-\# Result
-"Hello"
-```
+    \# Result
+    "Hello"
+    ```
 * * *
 
-#### **GETRANGE**: Get a substring of the string stored at a key.
+*   #### **GETRANGE**: Get a substring of the string stored at a key.
 
-```bash
-\# Previous Value
-"Hello World" (set using \`SET mykey "Hello World"\`)
+    ```bash
+    \# Previous Value
+    "Hello World" (set using \`SET mykey "Hello World"\`)
 
-\# Command
-GETRANGE mykey 0 4
+    \# Command
+    GETRANGE mykey 0 4
 
-\# Result
-"Hello"
-```
+    \# Result
+    "Hello"
+    ```
 * * *
 
-#### **GETSET**: Set a new value for a key and return its old value.
+*   #### **GETSET**: Set a new value for a key and return its old value.
 
-```bash
-\# Previous Value
-"Hello" (set using \`SET mykey "Hello"\`)
+    ```bash
+    \# Previous Value
+    "Hello" (set using \`SET mykey "Hello"\`)
 
-\# Command
-GETSET mykey "World"
+    \# Command
+    GETSET mykey "World"
 
-\# Result
-"Hello"  \# Old value
-```
+    \# Result
+    "Hello"  \# Old value
+    ```
 * * *
 
-#### **INCRBY**: Increment the integer value of a key by a specified amount.
+*   #### **INCRBY**: Increment the integer value of a key by a specified amount.
 
-```bash
-\# Previous Value
-10 (set using \`SET counter 10\`)
+    ```bash
+    \# Previous Value
+    10 (set using \`SET counter 10\`)
 
-\# Command
-INCRBY counter 5
+    \# Command
+    INCRBY counter 5
 
-\# Result
-(integer) 15
-```
+    \# Result
+    (integer) 15
+    ```
 * * *
 
-#### **INCRBYFLOAT**: Increment the float value of a key by a specified amount.
+*   #### **INCRBYFLOAT**: Increment the float value of a key by a specified amount.
 
-```bash
-\# Previous Value
-10.5 (set using \`SET counter 10.5\`)
+    ```bash
+    \# Previous Value
+    10.5 (set using \`SET counter 10.5\`)
 
-\# Command
-INCRBYFLOAT counter 2.3
+    \# Command
+    INCRBYFLOAT counter 2.3
 
-\# Result
-"12.8"  \# Result is returned as a string
-```
+    \# Result
+    "12.8"  \# Result is returned as a string
+    ```
 * * *
 
-#### **LCS**: Find the longest common substring between two strings.
+*   #### **LCS**: Find the longest common substring between two strings.
 
-```bash
-\# Previous Values
-"Hello" (set using \`SET key1 "Hello"\`)
-"Hallo" (set using \`SET key2 "Hallo"\`)
+    ```bash
+    \# Previous Values
+    "Hello" (set using \`SET key1 "Hello"\`)
+    "Hallo" (set using \`SET key2 "Hallo"\`)
 
-\# Command
-LCS key1 key2
+    \# Command
+    LCS key1 key2
 
-\# Result
-"allo"
-```
+    \# Result
+    "allo"
+    ```
 * * *
 
-#### **MGET**: Get the values of multiple keys.
+*   #### **MGET**: Get the values of multiple keys.
 
-```bash
-\# Previous Values
-"Hello" (set using \`SET key1 "Hello"\`)
-"World" (set using \`SET key2 "World"\`)
+    ```bash
+    \# Previous Values
+    "Hello" (set using \`SET key1 "Hello"\`)
+    "World" (set using \`SET key2 "World"\`)
 
-\# Command
-MGET key1 key2
+    \# Command
+    MGET key1 key2
 
-\# Result
-1) "Hello"
-2) "World"
-```
+    \# Result
+    1) "Hello"
+    2) "World"
+    ```
 * * *
 
-#### **MSET**: Set multiple keys to multiple values.
+*   #### **MSET**: Set multiple keys to multiple values.
 
-```bash
-\# Command
-MSET key1 "Hello" key2 "World"
+    ```bash
+    \# Command
+    MSET key1 "Hello" key2 "World"
 
-\# Result
-OK
-```
+    \# Result
+    OK
+    ```
 * * *
 
-#### **MSETNX**: Set multiple keys to multiple values only if none of the keys exist.
+*    #### **MSETNX**: Set multiple keys to multiple values only if none of the keys exist.
 
-```bash
-\# Previous Values
-key1 does not exist
-key2 does not exist
+        ```bash
+        \# Previous Values
+        key1 does not exist
+        key2 does not exist
 
-\# Command
-MSETNX key1 "Hello" key2 "World"
+        \# Command
+        MSETNX key1 "Hello" key2 "World"
 
-\# Result
-(integer) 1  \# Success
-```
+        \# Result
+        (integer) 1  \# Success
+        ```
+   
+
+*   #### **PSETEX**: Set the value and expiration in milliseconds for a key.
+
+    ```bash
+    \# Command
+    PSETEX mykey 5000 "Hello"  \# Expires in 5000 milliseconds (5 seconds)
+
+    \# Result
+    OK
+    ```
 * * *
 
-#### **PSETEX**: Set the value and expiration in milliseconds for a key.
+*   #### **SETEX**: Set the value and expiration in seconds for a key.
 
-```bash
-\# Command
-PSETEX mykey 5000 "Hello"  \# Expires in 5000 milliseconds (5 seconds)
+    ```bash
+    \# Command
+    SETEX mykey 10 "Hello"  \# Expires in 10 seconds
 
-\# Result
-OK
-```
+    \# Result
+    OK
+    ```
 * * *
 
-#### **SETEX**: Set the value and expiration in seconds for a key.
+*   #### **SETNX**: Set the value of a key only if it does not exist.
 
-```bash
-\# Command
-SETEX mykey 10 "Hello"  \# Expires in 10 seconds
+    ```bash
+    \# Previous Value
+    key1 does not exist
 
-\# Result
-OK
-```
+    \# Command
+    SETNX key1 "Hello"
+
+    \# Result
+    (integer) 1  \# Success
+    ```
 * * *
 
-#### **SETNX**: Set the value of a key only if it does not exist.
+*   #### **SETRANGE**: Overwrite part of a string at a key starting at a specified offset.
 
-```bash
-\# Previous Value
-key1 does not exist
+    ```bash
+    \# Previous Value
+    "Hello World" (set using \`SET mykey "Hello World"\`)
 
-\# Command
-SETNX key1 "Hello"
+    \# Command
+    SETRANGE mykey 6 "Redis"
 
-\# Result
-(integer) 1  \# Success
-```
+    \# Result
+    (integer) 11  \# Length of the new string
+    ```
 * * *
 
-#### **SETRANGE**: Overwrite part of a string at a key starting at a specified offset.
+*   #### **STRLEN**: Get the length of the value stored at a key.
 
-```bash
-\# Previous Value
-"Hello World" (set using \`SET mykey "Hello World"\`)
+    ```bash
+    \# Previous Value
+    "Hello" (set using \`SET mykey "Hello"\`)
 
-\# Command
-SETRANGE mykey 6 "Redis"
+    \# Command
+    STRLEN mykey
 
-\# Result
-(integer) 11  \# Length of the new string
-```
+    \# Result
+    (integer) 5
+    ```
 * * *
 
-#### **STRLEN**: Get the length of the value stored at a key.
+*   #### **SUBSTR**: Get a substring of the string stored at a key (deprecated, use `GETRANGE` instead).
 
-```bash
-\# Previous Value
-"Hello" (set using \`SET mykey "Hello"\`)
+    ```bash
+    \# Previous Value
+    "Hello World" (set using \`SET mykey "Hello World"\`)
 
-\# Command
-STRLEN mykey
+    \# Command
+    SUBSTR mykey 0 4
 
-\# Result
-(integer) 5
-```
-* * *
-
-#### **SUBSTR**: Get a substring of the string stored at a key (deprecated, use `GETRANGE` instead).
-
-```bash
-\# Previous Value
-"Hello World" (set using \`SET mykey "Hello World"\`)
-
-\# Command
-SUBSTR mykey 0 4
-
-\# Result
-"Hello"
-```
+    \# Result
+    "Hello"
+    ```
 * * *
 
 ### 2\. **Hashes**
@@ -341,7 +341,7 @@ Hashes are maps between string fields and string values.
     "John Doe"
     ```
 *   **HGETALL**: Get all fields and values in a hash.
-    - Syntax: **`HGETALL key field`**
+    - Syntax: **`HGETALL key`**
 
     ```bash   
      HGETALL user:1000
