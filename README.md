@@ -324,19 +324,86 @@ SUBSTR mykey 0 4
 Hashes are maps between string fields and string values.
 
 *   **HSET**: Set the value of a field in a hash.
-    
+    - Syntax: **`HSET key field value [field value ...]`**
     ```bash   
-     HSET user:1000 name "John Doe"
+    # Set a single field
+    HSET user:1000 name "John Doe"
+
+    # Set multiple fields
+    HSET user:1000 age 30 email "john.doe@example.com"
     ```
 *   **HGET**: Get the value of a field in a hash.
-    
+    - Syntax: **`HGET key field`**
+
     ```bash    
     HGET user:1000 name
+    Output =>
+    "John Doe"
     ```
 *   **HGETALL**: Get all fields and values in a hash.
-    
+    - Syntax: **`HGETALL key field`**
+
     ```bash   
      HGETALL user:1000
+     Output =>
+    1) "name"
+    2) "John Doe"
+    3) "age"
+    4) "30"
+    5) "email"
+    6) "john.doe@example.com"
+    ```
+
+*   **HKEYS**: Get all fields in a hash.
+    - Syntax: **`HKEYS key`**
+
+    ```bash   
+     HKEYS user:1000
+     Output =>
+    1) "name"
+    2) "age"
+    3) "email"
+    ```
+
+*   **HVALS**: Get all values in a hash.
+    - Syntax: **`HVALS key`**
+
+    ```bash   
+    HVALS user:1000
+    Output =>
+    1) "John Doe"
+    2) "30"
+    3) "john.doe@example.com"
+    ```
+
+*   **HEXISTS**: Check if a field exists in a hash.
+    - Syntax: **`HEXISTS key field`**
+    - Returns `1` if the field exists, `0` otherwise.
+    ```bash   
+    HEXISTS user:1000 name
+    Output =>
+    (integer) 1
+    ```
+
+*   **HDEL**: Delete one or more fields from a hash.
+    - Syntax: **`HDEL key field [field ...]`**
+    ```bash   
+    HDEL user:1000 email
+    HGETALL user:1000
+    Output =>
+    1) "name"
+    2) "John Doe"
+    3) "age"
+    4) "30"
+    ```
+
+*   **DEL**: Removes the entire key and its associated data.
+    - Syntax: **`DEL key [key ...]`**
+    ```bash   
+    DEL user:1000
+    HGETALL user:1000
+    Output =>
+    (empty list or set)
     ```
 
 ### 3\. **Lists**
